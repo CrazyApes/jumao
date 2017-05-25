@@ -15,6 +15,7 @@ spring:
       naming:
         strategy: org.hibernate.cfg.ImprovedNamingStrategy
     show-sql: false
+    open-in-view: true
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.jdbc.Driver
