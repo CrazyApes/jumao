@@ -65,6 +65,7 @@ $(function() {
                 success: function(result) {
                     if (0 === result.code) {
                         $cookie.set($global.tokenKey, result.content);
+                        window.setreq
                         window.location.href = '/index';
                     } else {
                         var fieldErroInfo = result.content;
