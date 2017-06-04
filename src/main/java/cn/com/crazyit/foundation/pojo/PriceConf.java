@@ -1,5 +1,6 @@
 package cn.com.crazyit.foundation.pojo;
 
+import cn.com.crazyit.core.constant.PriceConfType;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -51,7 +52,7 @@ public class PriceConf extends ApplicationPojo{
 
     @Enumerated
     @Column(length = 20, nullable = false)
-    private String priceConfType;
+    private PriceConfType priceConfType;
 
     //基础宽度
     @Column(nullable = false)

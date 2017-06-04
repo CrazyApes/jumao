@@ -1,8 +1,10 @@
 package cn.com.crazyit.foundation.service;
 
 import cn.com.crazyit.foundation.pojo.ApplicationPojo;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 /**
  * @author CrazyApeDX
@@ -12,15 +14,15 @@ public interface ApplicationService<Pojo extends ApplicationPojo> {
 
     Pageable getPage(Integer page, Integer size);
 
-    ResponseEntity<?> save(Pojo pojo);
+    Pojo save(Pojo pojo);
 
-    ResponseEntity<?> delete(Long id);
+    void delete(Long id);
 
-    ResponseEntity<?> modify(Pojo pojo);
+    Pojo modify(Pojo pojo);
 
-    ResponseEntity<?> findOne(Long id);
+    Pojo findOne(Long id);
 
-    ResponseEntity<?> findAll();
+    List<Pojo> findAll();
 
-    ResponseEntity<?> findAll(Integer page, Integer size);
+    Page<Pojo> findAll(Integer page, Integer size);
 }

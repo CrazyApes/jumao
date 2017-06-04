@@ -22,7 +22,7 @@ import java.util.Arrays;
 @Component
 public final class ControllerMonitorAspect {
 
-    private final Logger LOG = LoggerFactory.getLogger("控制器跟踪");
+    private final Logger LOG = LoggerFactory.getLogger(ControllerMonitorAspect.class);
 
     @Pointcut("execution(public * cn.com.crazyit.web.controller..*.*(..))")
     public void pointCut() {}

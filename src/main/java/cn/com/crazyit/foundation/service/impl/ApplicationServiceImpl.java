@@ -1,13 +1,15 @@
 package cn.com.crazyit.foundation.service.impl;
 
 import cn.com.crazyit.core.environment.PageableEnvironment;
+import cn.com.crazyit.core.exception.DataException;
 import cn.com.crazyit.foundation.dao.ApplicationDAO;
 import cn.com.crazyit.foundation.pojo.ApplicationPojo;
 import cn.com.crazyit.foundation.service.ApplicationService;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+
+import java.util.List;
 
 /**
  * @author CrazyApeDX
@@ -39,38 +41,52 @@ public abstract class ApplicationServiceImpl<Pojo extends ApplicationPojo> imple
     }
 
     @Override
-    public ResponseEntity<?> save(Pojo pojo) {
-        return ResponseEntity.ok(dao.save(pojo));
-    }
-
-    @Override
-    public ResponseEntity<?> delete(Long id) {
-        dao.delete(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
-    }
-
-    @Override
-    public ResponseEntity<?> modify(Pojo pojo) {
-        return ResponseEntity.ok(dao.save(pojo));
-    }
-
-    @Override
-    public ResponseEntity<?> findOne(Long id) {
-        Pojo pojo = dao.findOne(id);
+    public Pojo save(Pojo pojo) {
         if (null == pojo) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("您查找的数据不存在");
+            throw new DataException("参数pojo为null");
+        } else if (null != pojo.getId()) {
+            throw new DataException("参数pojo的id不为null");
         } else {
-            return ResponseEntity.ok(pojo);
+            return dao.save(pojo);
         }
     }
 
     @Override
-    public ResponseEntity<?> findAll() {
-        return ResponseEntity.ok(dao.findAll());
+    public void delete(Long id) {
+        if (null == id) {
+            throw new DataException("参数id为null");
+        } else {
+            dao.delete(id);
+        }
     }
 
     @Override
-    public ResponseEntity<?> findAll(Integer page, Integer size) {
-        return ResponseEntity.ok(dao.findAll(getPage(page, size)));
+    public Pojo modify(Pojo pojo) {
+        if (null == pojo) {
+            throw new DataException("参数pojo为null");
+        } else if (null == pojo.getId()) {
+            throw new DataException("参数pojo的id为null");
+        } else {
+            return dao.save(pojo);
+        }
+    }
+
+    @Override
+    public Pojo findOne(Long id) {
+        if (null == id) {
+            throw new DataException("参数id为null");
+        } else {
+            return dao.findOne(id);
+        }
+    }
+
+    @Override
+    public List<Pojo> findAll() {
+        return dao.findAll();
+    }
+
+    @Override
+    public Page<Pojo> findAll(Integer page, Integer size) {
+        return dao.findAll(getPage(page, size));
     }
 }

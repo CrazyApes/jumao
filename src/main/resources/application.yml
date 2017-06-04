@@ -2,7 +2,6 @@
 debug: false
 server:
   port: 8080
-  context-path: /api
 logging:
   config: classpath:logback-spring.xml
 
@@ -52,6 +51,9 @@ application:
 # 开发私有属性环境配置
 spring:
   profiles: dev
+application:
+  jwt:
+    key: test
 
 ---
 # 生产环境私有属性配置

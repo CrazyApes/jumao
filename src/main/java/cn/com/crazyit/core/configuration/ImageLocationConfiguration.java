@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 @ConfigurationProperties(prefix = ImageLocationConfiguration.PREFIX)
 public class ImageLocationConfiguration {
 
-    protected final static String PREFIX = "application.image";
+    protected final static String PREFIX = "application.images";
 
     @Setter private String path;
 

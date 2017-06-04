@@ -5,10 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Enumerated;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author CrazyApeDX
@@ -18,8 +15,8 @@ import javax.persistence.Table;
 @Setter
 @ToString(callSuper = true)
 @Entity
-@Table(name = "ORDER_GOODS")
-public class OrderGoods extends ApplicationPojo {
+@Table(name = "CUSTOMER_ORDER_GOODS")
+public class CustomerOrderGoods extends ApplicationPojo {
 
     // 商品名称
     @Column(length = 30, nullable = false)
@@ -65,4 +62,9 @@ public class OrderGoods extends ApplicationPojo {
     // 商品应付
     @Column(nullable = false)
     private Long payableAmount = 0L;
+
+    // 色卡图片地址
+    @Column(length = 80)
+    private String cardUri;
 }
+

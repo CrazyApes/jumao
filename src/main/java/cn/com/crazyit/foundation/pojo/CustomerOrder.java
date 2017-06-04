@@ -1,14 +1,14 @@
 package cn.com.crazyit.foundation.pojo;
 
 import cn.com.crazyit.core.constant.OrderStatus;
-import cn.com.crazyit.core.converter.LocalDateTimeConverter;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,8 +19,8 @@ import java.util.List;
 @Setter
 @ToString(callSuper = true)
 @Entity
-@Table(name = "ORDER")
-public class Order extends ApplicationPojo {
+@Table(name = "CUSTOMER_ORDER")
+public class CustomerOrder extends ApplicationPojo {
 
     // 订单号
     @Column(length = 40, unique = true, nullable = false, updatable = false)
@@ -42,9 +42,9 @@ public class Order extends ApplicationPojo {
     private Employee employee;
 
     // 订单商品
-    @OneToMany(targetEntity = OrderGoods.class)
-    @JoinColumn(name = "ORDER_ID")
-    private List<OrderGoods> orderGoodsList = new ArrayList<>();
+    @OneToMany(targetEntity = CustomerOrderGoods.class)
+    @JoinColumn(name = "CUSTOMER_ORDER_ID")
+    private List<CustomerOrderGoods> customerOrderGoodsList = new ArrayList<>();
 
     // 订单总额
     @Column(nullable = false)
@@ -71,29 +71,29 @@ public class Order extends ApplicationPojo {
     private String shippingAddress;
 
     // 订单创建时间
-    @Temporal(TemporalType.TIMESTAMP)
-    @Convert(converter = LocalDateTimeConverter.class)
-    private LocalDateTime createTime;
+    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date createTime;
 
     // 订单确认时间
-    @Temporal(TemporalType.TIMESTAMP)
-    @Convert(converter = LocalDateTimeConverter.class)
-    private LocalDateTime checkTime;
+    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date checkTime;
 
     // 订单开始生产时间
-    @Temporal(TemporalType.TIMESTAMP)
-    @Convert(converter = LocalDateTimeConverter.class)
-    private LocalDateTime produceStartTime;
+    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date produceStartTime;
 
     // 订单完成生产时间
-    @Temporal(TemporalType.TIMESTAMP)
-    @Convert(converter = LocalDateTimeConverter.class)
-    private LocalDateTime produceEndTime;
+    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date produceEndTime;
 
     // 订单发货时间
-    @Temporal(TemporalType.TIMESTAMP)
-    @Convert(converter = LocalDateTimeConverter.class)
-    private LocalDateTime sendTime;
+    @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date sendTime;
 
     // 物流公司标题
     @Column(length = 15)
