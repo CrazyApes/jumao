@@ -16,7 +16,7 @@ import javax.persistence.*;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "CUSTOMER_ORDER_GOODS")
-public class CustomerOrderGoods extends ApplicationPojo {
+public class CustomerOrderGoods extends AppPojo {
 
     // 商品名称
     @Column(length = 30, nullable = false)

@@ -16,7 +16,7 @@ import javax.persistence.*;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "PRICE_CONF")
-public class PriceConf extends ApplicationPojo{
+public class PriceConf extends AppPojo {
     //父配制id
     @Column(updatable = false)
     private Long parentConfId;

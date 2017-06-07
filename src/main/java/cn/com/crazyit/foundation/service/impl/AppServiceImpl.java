@@ -2,9 +2,9 @@ package cn.com.crazyit.foundation.service.impl;
 
 import cn.com.crazyit.core.environment.PageableEnvironment;
 import cn.com.crazyit.core.exception.DataException;
-import cn.com.crazyit.foundation.dao.ApplicationDAO;
-import cn.com.crazyit.foundation.pojo.ApplicationPojo;
-import cn.com.crazyit.foundation.service.ApplicationService;
+import cn.com.crazyit.foundation.dao.AppDAO;
+import cn.com.crazyit.foundation.pojo.AppPojo;
+import cn.com.crazyit.foundation.service.AppService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -15,18 +15,18 @@ import java.util.List;
  * @author CrazyApeDX
  *         Created on 2017/5/3.
  */
-public abstract class ApplicationServiceImpl<Pojo extends ApplicationPojo> implements ApplicationService<Pojo> {
+public abstract class AppServiceImpl<Pojo extends AppPojo> implements AppService<Pojo> {
 
     private PageableEnvironment pageableEnvironment;
-    private ApplicationDAO<Pojo> dao;
+    private AppDAO<Pojo> dao;
 
-    public ApplicationServiceImpl(PageableEnvironment pageableEnvironment, ApplicationDAO<Pojo> dao) {
+    public AppServiceImpl(PageableEnvironment pageableEnvironment, AppDAO<Pojo> dao) {
         this.pageableEnvironment = pageableEnvironment;
         this.dao = dao;
     }
 
     @Override
-    public Pageable getPage(Integer page, Integer size) {
+    public Pageable getPageRequest(Integer page, Integer size) {
         if (null == page || page < 0) {
             page = pageableEnvironment.getDefaultPage();
         }
@@ -87,6 +87,6 @@ public abstract class ApplicationServiceImpl<Pojo extends ApplicationPojo> imple
 
     @Override
     public Page<Pojo> findAll(Integer page, Integer size) {
-        return dao.findAll(getPage(page, size));
+        return dao.findAll(getPageRequest(page, size));
     }
 }

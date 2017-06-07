@@ -20,7 +20,7 @@ import java.util.List;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "CUSTOMER_ORDER")
-public class CustomerOrder extends ApplicationPojo {
+public class CustomerOrder extends AppPojo {
 
     // 订单号
     @Column(length = 40, unique = true, nullable = false, updatable = false)

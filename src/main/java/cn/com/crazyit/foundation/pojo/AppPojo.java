@@ -14,7 +14,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @MappedSuperclass
-public abstract class ApplicationPojo {
+public abstract class AppPojo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

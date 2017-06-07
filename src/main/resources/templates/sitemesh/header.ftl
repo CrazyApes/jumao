@@ -1,8 +1,8 @@
 <header class="main-header">
 
     <a href="/" class="logo">
-        <span class="logo-mini"><b>易</b></span>
-        <span class="logo-lg"><b>乐易装</b></span>
+        <span class="logo-mini"><b>茂</b></span>
+        <span class="logo-lg"><b>巨茂木业</b>OMS</span>
     </a>
     <nav class="navbar navbar-static-top">
         <a href="javascript:void(0);" class="sidebar-toggle" data-toggle="offcanvas" role="button"></a>
@@ -24,20 +24,33 @@
                             <p>
                                 <#if loginEmployee??>${loginEmployee.name!'加载中...'}<#else>加载中...</#if>
                                 <small>
-                                    <#if loginEmployee??>${loginEmployee.structureTitle!'加载中...'}<#else>加载中...</#if>
+                                    <#if loginEmployee??>${loginEmployee.roleTitle!'加载中...'}<#else>加载中...</#if>
                                 </small>
                             </p>
                         </li>
                         <li class="user-body">
                             <div class="row">
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Followers</a>
+                                <div class="col-xs-6 text-center">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-phone"></i>
+                                        &nbsp;
+                                        <#if loginEmployee?? && loginEmployee.bindingMobile?? && loginEmployee.bindingMobile>
+                                            已绑定
+                                        <#else>
+                                            未绑定
+                                        </#if>
+                                    </a>
                                 </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Sales</a>
-                                </div>
-                                <div class="col-xs-4 text-center">
-                                    <a href="#">Friends</a>
+                                <div class="col-xs-6 text-center">
+                                    <a href="#">
+                                        <i class="glyphicon glyphicon-envelope"></i>
+                                        &nbsp;
+                                        <#if loginEmployee?? && loginEmployee.bindingEmail?? && loginEmployee.bindingEmail>
+                                            已绑定
+                                        <#else>
+                                            未绑定
+                                        </#if>
+                                    </a>
                                 </div>
                             </div>
                         </li>

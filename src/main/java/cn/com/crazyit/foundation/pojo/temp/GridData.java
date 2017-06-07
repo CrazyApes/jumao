@@ -20,15 +20,17 @@ public final class GridData<Data> implements Serializable {
     private List<Data> rows;
     private Long total;
 
-    public GridData<Data> build(List<Data> rows, Long total) {
-        this.setRows(rows);
-        this.setTotal(total);
-        return this;
+    public static <Data> GridData<Data> build(List<Data> rows, Long total) {
+        GridData<Data> gridData = new GridData<>();
+        gridData.setRows(rows);
+        gridData.setTotal(total);
+        return gridData;
     }
 
-    public GridData<Data> build(Page<Data> page) {
-        this.setRows(page.getContent());
-        this.setTotal(page.getTotalElements());
-        return this;
+    public static <Data> GridData<Data> build(Page<Data> page) {
+        GridData<Data> gridData = new GridData<>();
+        gridData.setRows(page.getContent());
+        gridData.setTotal(page.getTotalElements());
+        return gridData;
     }
 }

@@ -2,7 +2,6 @@ package cn.com.crazyit.foundation.service.impl;
 
 import cn.com.crazyit.core.environment.PageableEnvironment;
 import cn.com.crazyit.core.exception.DataException;
-import cn.com.crazyit.foundation.dao.ApplicationDAO;
 import cn.com.crazyit.foundation.dao.EmployeeAuthDAO;
 import cn.com.crazyit.foundation.pojo.EmployeeAuth;
 import cn.com.crazyit.foundation.service.EmployeeAuthService;
@@ -19,7 +18,7 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class EmployeeAuthServiceImpl extends ApplicationServiceImpl<EmployeeAuth>
+public class EmployeeAuthServiceImpl extends AppServiceImpl<EmployeeAuth>
         implements EmployeeAuthService {
 
     private EmployeeAuthDAO employeeAuthDAO;

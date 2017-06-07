@@ -9,7 +9,7 @@
 <h1>菜单名</h1>
 <ol class="breadcrumb">
     <li><a href="/view"><i class="fa fa-home"></i> 首页</a></li>
-    <li><a href="javascript:void(0);">父级菜单名</a></li>
+    <li><a href="javascript:void(0);"> 父级菜单名</a></li>
     <li class="active">菜单名</li>
 </ol>
 </section>
@@ -82,7 +82,7 @@
     $(function() {
         $grid.init($('#dataGrid'), $('#toolbar'), '/rest/structure/page/grid', 'get', true, function(params) {
             return {
-                offset: params.offset ,
+                offset: params.offset,
                 size: params.limit,
                 keywords: params.search
             }

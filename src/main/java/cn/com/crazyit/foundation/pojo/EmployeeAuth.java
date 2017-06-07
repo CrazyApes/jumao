@@ -15,7 +15,7 @@ import javax.persistence.*;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "EMPLOYEE_AUTH")
-public class EmployeeAuth extends ApplicationPojo {
+public class EmployeeAuth extends AppPojo {
 
     @Column(nullable = false, updatable = false, unique = true)
     private Long employeeId;

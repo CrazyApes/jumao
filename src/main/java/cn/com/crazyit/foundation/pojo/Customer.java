@@ -16,5 +16,5 @@ import javax.persistence.Table;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "CUSTOMER")
-public class Customer extends ApplicationPojo {
+public class Customer extends AppPojo {
 }

@@ -19,7 +19,7 @@ import java.util.Date;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "EMPLOYEE")
-public class Employee extends ApplicationPojo {
+public class Employee extends AppPojo {
 
     @Column(length = 5, nullable = false)
     private String name;

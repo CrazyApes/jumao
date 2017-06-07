@@ -9,7 +9,7 @@
                 <p><#if loginEmployee??>${loginEmployee.name!'加载中...'}<#else>加载中...</#if></p>
                 <a href="#">
                     <i class="fa fa-smile-o"></i>
-                    <#if loginEmployee??> ${loginEmployee.structureTitle!'加载中...'}<#else> 加载中...</#if>
+                    <#if loginEmployee??> ${loginEmployee.roleTitle!'加载中...'}<#else> 加载中...</#if>
                 </a>
             </div>
         </div>
@@ -25,9 +25,9 @@
         </form>
         <ul class="sidebar-menu">
             <li class="header">操作菜单</li>
-            <#if IndexMenuVOList?? && IndexMenuVOList?size gt 0>
-                <#list IndexMenuVOList as item>
-                    <li class="treeview <#if parentMenuId?? && parentMenuId?c == item.id?c>active</#if>">
+            <#if menuTree?? && menuTree?size gt 0>
+                <#list menuTree as item>
+                    <li class="treeview <#if parentMenu?? && parentMenu.id?? && parentMenu.id?c == item.id?c>active</#if>">
                         <a href="${item.linkUr!'#'}?menuId=${item.id?c}">
                             <i class="${item.iconStyle!''}"></i>
                             <span>${item.title!'加载中...'}</span>

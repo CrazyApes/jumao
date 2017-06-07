@@ -17,7 +17,7 @@ import javax.persistence.Table;
 @ToString(callSuper = true)
 @Entity
 @Table(name = "ROLE")
-public class Role extends ApplicationPojo {
+public class Role extends AppPojo {
 
     @Column(length = 10, nullable = false, unique = true)
     private String title;

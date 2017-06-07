@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  *         Created on 2017/5/3.
  */
 @Repository
-public interface EmployeeAuthDAO extends ApplicationDAO<EmployeeAuth> {
+public interface EmployeeAuthDAO extends AppDAO<EmployeeAuth> {
 
     EmployeeAuth findByEmployeeId(Long employeeId);
 

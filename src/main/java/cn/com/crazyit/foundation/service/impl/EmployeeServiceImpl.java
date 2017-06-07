@@ -29,7 +29,7 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class EmployeeServiceImpl extends ApplicationServiceImpl<Employee> implements EmployeeService {
+public class EmployeeServiceImpl extends AppServiceImpl<Employee> implements EmployeeService {
 
     private EmployeeDAO employeeDAO;
 

@@ -107,7 +107,7 @@ var $grid = {
             // 下一页按钮显示值
             paginationNextText: '下一页',
             // 是否开启点击选中
-            clickToSelect: false,
+            clickToSelect: true,
             // 是否使用按下Enter键之后执行查询
             searchOnEnterKey: true,
             // 是否允许空值查询

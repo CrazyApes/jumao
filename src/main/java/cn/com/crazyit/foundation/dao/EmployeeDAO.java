@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
  *         Created on 2017/5/3.
  */
 @Repository
-public interface EmployeeDAO extends ApplicationDAO<Employee> {
+public interface EmployeeDAO extends AppDAO<Employee> {
 
 }
