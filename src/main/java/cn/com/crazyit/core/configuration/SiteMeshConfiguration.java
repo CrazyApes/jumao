@@ -23,7 +23,7 @@ public class SiteMeshConfiguration {
     @ConditionalOnWebApplication
     public FilterRegistrationBean siteMeshFilter() {
         FilterRegistrationBean registrationBean = new FilterRegistrationBean(new SiteMeshFilter());
-        registrationBean.setDispatcherTypes(DispatcherType.REQUEST);
+        registrationBean.setDispatcherTypes(DispatcherType.REQUEST, DispatcherType.ERROR);
         return registrationBean;
     }
 }

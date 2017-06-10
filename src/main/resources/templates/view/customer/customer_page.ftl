@@ -6,16 +6,16 @@
 <body>
 
 <section class="content-header">
-<h1><#if currentMenu??>${currentMenu.title!'加载中...'}<#else>加载中...</#if></h1>
-<ol class="breadcrumb">
-    <li><a href="/view"><i class="fa fa-home"></i>&nbsp;首页</a></li>
+    <h1><#if currentMenu??>${currentMenu.title!'加载中...'}<#else>加载中...</#if></h1>
+    <ol class="breadcrumb">
+        <li><a href="/view"><i class="fa fa-home"></i>&nbsp;首页</a></li>
     <#if parentMenu??>
         <li><a href="javascript:void(0);">&nbsp;${parentMenu.title!'加载中...'}</a></li>
     </#if>
     <#if currentMenu??>
         <li class="active">&nbsp;${currentMenu.title!'加载中...'}</li>
     </#if>
-</ol>
+    </ol>
 </section>
 
 <section class="content">
@@ -30,7 +30,7 @@
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;修改
                     </button>
                     <button id="btn_delete" type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>&nbsp;删除
+                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>&nbsp;失效
                     </button>
                 </div>
                 <div class="box-body table-reponsive">
@@ -44,7 +44,7 @@
 </section>
 <script>
     $(function() {
-        $grid.init($('#dataGrid'), $('#toolbar'), '/api/menus', 'get', true, function(params) {
+        $grid.init($('#dataGrid'), $('#toolbar'), '/api/customers', 'get', true, function(params) {
             return {
                 offset: params.offset,
                 size: params.limit,
@@ -59,44 +59,32 @@
             align: 'center'
         }, {
             field: 'title',
-            title: '菜单标题'
+            title: '客户标识名'
         }, {
-            field: 'iconStyle',
-            title: '图标样式',
-            formatter: function(value) {
-                if (value) {
-                    return '<i class="' + value + '"></i>';
-                } else {
-                    return '<i class="fa fa-circle-o"></i>';
-                }
-            },
-            align: 'center'
+            field: 'address',
+            title: '客户地址',
+            witdh: '100px'
         }, {
-            field: 'parentId',
-            title: '父菜单ID',
-            align: 'center'
+            field: 'phone',
+            title: '联系方式'
         }, {
-            field: 'linkUri',
-            title: '链接地址'
+            field: 'fax',
+            title: '传真号码'
         }, {
-            field: 'readOnly',
-            title: '是否只读',
+            field: 'enable',
+            title: '是否生效',
             formatter: function(value) {
                 if (true === value) {
-                    return '<span class="label label-danger">是</span>'
+                    return '<span class="label label-success">生效</span>';
                 } else {
-                    return '<span class="label label-success">否</span>'
+                    return '<span class="label label-danger">失效</span>';
                 }
             },
-            align: 'center'
-        }, {
-            field: 'sortId',
-            title: '排序号',
             align: 'center'
         }]);
 
         $('#btn_add').on('click', function () {
-            $grid.add('/menus/edit/0?parentMenuId=${parentMenuId!'0'}');
+            $grid.add('/customers/edit/0?parentMenuId=${parentMenuId!'0'}');
         });
 
         $('#btn_edit').on('click', function() {
@@ -113,7 +101,45 @@
                 if (true === row.readOnly) {
                     $notify.warning('只读数据不允许修改');
                 } else {
-                    window.location.href = '/menus/edit/' + id + '?parentMenuId=${parentMenuId!'0'}';
+                    window.location.href = '/customers/edit/' + id + '?parentMenuId=${parentMenuId!'0'}';
+                }
+            }
+        });
+
+        $('#btn_delete').on('click', function() {
+            if (null === $global.timer) {
+                var container = $('#dataGrid');
+                var selected = $grid.getSelectedIds(container);
+                var length = selected.length;
+                if (length === 0) {
+                    $notify.warning('请在点击按钮前选中一条数据');
+                } else {
+                    $global.timer = $loading.show(1500);
+                    $.ajax({
+                        url: '/api/customers/enable/false',
+                        method: 'POST',
+                        traditional: true,
+                        data: {
+                            ids: selected
+                        },
+                        error: function() {
+                            clearTimeout($global.timer);
+                            $loading.close();
+                            $global.timer = null;
+                            $notify.danger('网络异常，请稍后重试或联系管理员');
+                        },
+                        success: function(result) {
+                            clearTimeout($global.timer);
+                            $loading.close();
+                            $global.timer = null;
+                            if (0 === result.code) {
+                                $grid.refresh($('#dataGrid'));
+                                $notify.info("共计" + result.content + "条数据被失效");
+                            } else {
+                                $notify.danger(result.message);
+                            }
+                        }
+                    })
                 }
             }
         });

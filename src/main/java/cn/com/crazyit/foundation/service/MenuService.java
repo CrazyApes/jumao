@@ -16,4 +16,8 @@ public interface MenuService extends AppService<Menu> {
     List<MenuBar> getMenuTree();
 
     Page<Menu> findAll(MenuQuery menuQuery, Integer page, Integer size);
+
+    List<Menu> findByParentId(Long parentId);
+
+    Boolean validateTitleRepeat(String title, Long id);
 }

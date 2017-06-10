@@ -1,7 +1,7 @@
 <header class="main-header">
 
     <a href="/" class="logo">
-        <span class="logo-mini"><b>茂</b></span>
+        <span class="logo-mini"><b>巨茂</b></span>
         <span class="logo-lg"><b>巨茂木业</b>OMS</span>
     </a>
     <nav class="navbar navbar-static-top">

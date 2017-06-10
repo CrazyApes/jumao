@@ -52,6 +52,15 @@ public class MenuServiceImpl extends AppServiceImpl<Menu> implements MenuService
             });
 
             result.forEach(menuBar -> menuBar.setChildren(childrenMap.get(menuBar.getId())));
+            result.sort((o1, o2) -> {
+                if (o1.getSortId() < o2.getSortId()) {
+                    return -1;
+                } else if (o1.getSortId() > o2.getSortId()) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            });
         } else {
             result = new ArrayList<>(0);
         }
@@ -64,6 +73,26 @@ public class MenuServiceImpl extends AppServiceImpl<Menu> implements MenuService
             throw new DataException("条件查询菜单失败：menuQuery == null");
         } else {
             return this.menuDAO.findAll(menuQuery.getConditional(), this.getPageRequest(page, size));
+        }
+    }
+
+    @Override
+    public List<Menu> findByParentId(Long parentId) {
+        if (null == parentId) {
+            throw new DataException("根据父ID查询菜单失败：id = null");
+        } else {
+            return this.menuDAO.findByParentId(parentId);
+        }
+    }
+
+    @Override
+    public Boolean validateTitleRepeat(String title, Long id) {
+        if (null == title) {
+            throw new DataException("验证菜单标题是否重复失败：title = null");
+        } else if (null == id) {
+            throw new DataException("验证菜单标题是否重复失败：id = null");
+        } else {
+            return this.menuDAO.countByTitleAndIdNot(title, id) > 0;
         }
     }
 }

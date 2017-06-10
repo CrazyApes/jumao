@@ -24,12 +24,12 @@ public class Menu extends AppPojo {
     private String title;
     // 图标样式
     @Column(length = 20)
-    private String iconStyle;
+    private String iconStyle = "fa fa-circle-o";
     // 父节点id
     @Column(nullable = false)
     private Long parentId = 0L;
     // 链接地址
-    @Column(length = 30, nullable = false)
+    @Column(length = 50, nullable = false)
     private String linkUri = "#";
     // 排序号
     @Column(length = 2, nullable = false)

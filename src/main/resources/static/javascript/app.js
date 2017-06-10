@@ -1,9 +1,25 @@
 var $global = {
     timer: null,
-    tokenKey: 'jumao_token_key'
+    tokenKey: 'jumao_token_key',
+    validateMobile: function() {
+        var userAgentInfo = navigator.userAgent;
+        var Agents = ["Android", "iPhone",
+            "SymbianOS", "Windows Phone"];
+        var flag = false;
+        for (var v = 0; v < Agents.length; v++) {
+            if (userAgentInfo.indexOf(Agents[v]) > 0) {
+                flag = true;
+                break;
+            }
+        }
+        return flag;
+    }
 };
 
 var $grid = {
+    refresh: function(container) {
+        container.bootstrapTable('refresh');
+    },
     add: function (url) {
         window.location.href = url;
     },
@@ -212,6 +228,18 @@ var $notify = {
     }
 };
 
+var $modal = {
+    danger: function (title, content, method) {
+        $('#dangerModalTitle').html(' ' + title);
+        $('#dangerModalContent').html(' ' + content);
+        $('#dangerModalCheckBtn').one('click', function() {
+            $('#dangerModal').modal('hide');
+            method();
+        });
+        $('#dangerModal').modal('show', {backdrop: 'static', keyboard: false});
+    }
+};
+
 var $cookie = {
     set: function(key, value, days) {
         if (null === days || undefined === days) {
@@ -222,15 +250,3 @@ var $cookie = {
         document.cookie = key + '='+ value + ';expires=' + date.toString();
     }
 };
-
-$(function() {
-    $(document).ajaxStart(function() {
-        $global.timer = $loading.show(1500);
-    });
-
-    $(document).ajaxComplete(function() {
-        clearTimeout($global.timer);
-        $loading.close();
-        $global.timer = null;
-    });
-});

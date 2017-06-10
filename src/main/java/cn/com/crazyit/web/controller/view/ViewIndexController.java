@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping(value = ViewIndexController.URL_MAPPING, produces = "text/html;charset=utf-8")
-public class ViewIndexController {
+public class ViewIndexController extends ViewBaseController {
 
     protected static final String URL_MAPPING = "/";
 

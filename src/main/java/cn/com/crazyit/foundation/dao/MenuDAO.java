@@ -12,5 +12,7 @@ import java.util.List;
 @Repository
 public interface MenuDAO extends AppDAO<Menu> {
 
-    List<MenuDAO> findByParentId(Long parentId);
+    List<Menu> findByParentId(Long parentId);
+
+    Integer countByTitleAndIdNot(String title, Long id);
 }
