@@ -46,6 +46,22 @@
                         </div>
                         <div class="col-md-6 col-xs-12">
                             <div class="form-group">
+                                <label for="region">
+                                    所属地区
+                                    <i class="fa fa-question-circle i-tooltip hidden-xs" data-toggle="tooltip"
+                                       data-content="只能输入中文，长度在2~20之间"></i>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                    <input name="region" type="text" class="form-control" id="region" placeholder="所属地区"
+                                           value="<#if customer??>${customer.region!'加载失败...'}</#if>">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group">
                                 <label for="address">
                                     客户地址
                                     <i class="fa fa-question-circle i-tooltip hidden-xs" data-toggle="tooltip"
@@ -55,6 +71,20 @@
                                     <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                     <input name="address" type="text" class="form-control" id="address" placeholder="客户地址"
                                            value="<#if customer??>${customer.address!'加载失败...'}</#if>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="deliveryType">
+                                    常用物流
+                                    <i class="fa fa-question-circle i-tooltip hidden-xs" data-toggle="tooltip"
+                                       data-content="只能输入中文和英文，长度在0~20之间"></i>
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
+                                    <input name="deliveryType" type="text" class="form-control" id="deliveryType" placeholder="常用物流"
+                                           value="<#if customer??>${customer.deliveryType!''}</#if>">
                                 </div>
                             </div>
                         </div>
@@ -85,6 +115,21 @@
                                     <span class="input-group-addon"><i class="fa fa-pencil"></i></span>
                                     <input name="fax" type="text" class="form-control" id="fax" placeholder="客户传真"
                                            value="<#if customer??>${customer.fax!''}</#if>">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-xs-12">
+                            <div class="form-group">
+                                <label for="address">
+                                    备注信息
+                                    <i class="fa fa-question-circle i-tooltip hidden-xs" data-toggle="tooltip"
+                                       data-content="可以输入任意信息，长度在0~150之间"></i>
+                                </label>
+                                <div class="input-group col-xs-12 col-md-6">
+                                    <textarea name="remark" id="remark" class="form-control no-resize"
+                                            placeholder="请在此输入备注信息"><#if customer??>${customer.remark!''}</#if></textarea>
                                 </div>
                             </div>
                         </div>

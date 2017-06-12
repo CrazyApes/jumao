@@ -114,6 +114,39 @@ $(function() {
                         }
                     }
                 }
+            },
+            region: {
+                message: '所属地区校验失败',
+                notEmpty: {
+                    message: '所属地区不能为空'
+                },
+                stringLength: {
+                    max: 20,
+                    min: 2,
+                    message: '所属地区的长度在2~20位之间'
+                },
+                regexp: {
+                    regexp: /^[\u4e00-\u9fa5]+$/,
+                    message: '所属地区只能输入中文'
+                }
+            },
+            deliveryType: {
+                message: '常用物流校验失败',
+                stringLength: {
+                    max: 20,
+                    message: '常用物流的长度不能超过20位'
+                },
+                regexp: {
+                    regexp: /^[\u4e00-\u9fa5A-Za-z]+$/,
+                    message: '常用物流只能输入中文和英文'
+                }
+            },
+            remark: {
+                message: '备注信息校验失败',
+                stringLength: {
+                    max: 100,
+                    message: '备注信息的长度不能超过100位'
+                }
             }
         }
     }).on('success.form.bv', function(e) {

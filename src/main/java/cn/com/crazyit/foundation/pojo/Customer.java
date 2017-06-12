@@ -23,9 +23,17 @@ public class Customer extends AppPojo {
     @Column(nullable = false, unique = true, length = 40)
     private String title;
 
+    // 地区
+    @Column(nullable = false, unique = true, length = 20)
+    private String region;
+
     // 地址
     @Column(nullable = false, length = 100)
     private String address;
+
+    // 常用物流
+    @Column(length = 20)
+    private String deliveryType;
 
     // 电话号码(座机或者手机)
     @Column(nullable = false, unique = true, length = 15)
@@ -34,6 +42,10 @@ public class Customer extends AppPojo {
     // 传真
     @Column(unique = true, length = 20)
     private String fax;
+
+    // 备注
+    @Column(length = 100)
+    private String remark;
 
     // 是否生效
     @Column(nullable = false)

@@ -61,15 +61,26 @@
             field: 'title',
             title: '客户标识名'
         }, {
+            field: 'region',
+            title: '所属地区',
+            width: '100px'
+        }, {
             field: 'address',
             title: '客户地址',
-            witdh: '100px'
+            width: '350px'
         }, {
             field: 'phone',
             title: '联系方式'
         }, {
+            field: 'deliveryType',
+            title: '常用物流'
+        }, {
             field: 'fax',
             title: '传真号码'
+        }, {
+            field: 'remark',
+            title: '备注',
+            width: '400px'
         }, {
             field: 'enable',
             title: '是否生效',

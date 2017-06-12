@@ -26,10 +26,19 @@ public class CustomerForm implements Serializable {
     @Pattern(regexp = "^[\\u4e00-\\u9fa5A-Za-z0-9]+$", message = "客户标识名只能输入中文、英文和数字")
     private String title;
 
+    @NotNull(message = "所属地区不能为空")
+    @Length(min = 2, max = 20, message = "所属地区的长度在2~20位之间")
+    @Pattern(regexp = "^[\\u4e00-\\u9fa5]+$", message = "所属地区只能输入中文")
+    private String region;
+
     @NotNull(message = "客户地址不能为空")
     @Length(min = 4, max = 100, message = "客户地址的长度在4~100之间")
     @Pattern(regexp = "^[\\u4e00-\\u9fa5A-Za-z0-9]+$", message = "客户地址只能输入中文、英文和数字")
     private String address;
+
+    @Length(max = 20, message = "常用物流的长度不能超过20位")
+    @Pattern(regexp = "^[\\u4e00-\\u9fa5A-Za-z]+$", message = "常用物流只能输入中文和英文")
+    private String deliveryType;
 
     @NotNull(message = "联系电话不能为空")
     @Length(min = 8, max = 15, message = "联系电话的长度在8~15位之间")
@@ -40,6 +49,9 @@ public class CustomerForm implements Serializable {
     private String fax;
 
     private Boolean enable;
+
+    @Length(max = 100, message = "备注信息的长度不能超过100位")
+    private String remark;
 
     public Customer transformToCustomer() {
         Customer customer = new Customer();
@@ -54,6 +66,15 @@ public class CustomerForm implements Serializable {
         }
         if (null != enable) {
             customer.setEnable(enable);
+        }
+        if (null != this.region && this.region.length() > 0) {
+            customer.setRegion(this.region);
+        }
+        if (null != this.deliveryType && this.deliveryType.length() > 0) {
+            customer.setDeliveryType(this.deliveryType);
+        }
+        if (null != this.remark && this.remark.length() > 0) {
+            customer.setRemark(this.remark);
         }
         return customer;
     }
