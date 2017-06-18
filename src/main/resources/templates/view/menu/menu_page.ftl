@@ -8,7 +8,7 @@
 <section class="content-header">
 <h1><#if currentMenu??>${currentMenu.title!'加载中...'}<#else>加载中...</#if></h1>
 <ol class="breadcrumb">
-    <li><a href="/view"><i class="fa fa-home"></i>&nbsp;首页</a></li>
+    <li><a href="/index"><i class="fa fa-home"></i>&nbsp;首页</a></li>
     <#if parentMenu??>
         <li><a href="javascript:void(0);">&nbsp;${parentMenu.title!'加载中...'}</a></li>
     </#if>

@@ -15,6 +15,10 @@ import lombok.ToString;
 @ToString(callSuper = true)
 public class MenuQuery extends AppQuery<Menu> {
 
+    public MenuQuery(String keywords) {
+        super(keywords);
+    }
+
     public MenuQuery(String keywords, OrderType orderType, String properties) {
         super(keywords, orderType, properties);
     }

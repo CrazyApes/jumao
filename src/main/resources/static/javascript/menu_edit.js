@@ -125,7 +125,11 @@ $(function() {
                     $loading.close();
                     $global.timer = null;
                     if (0 === result.code) {
-                        window.location.href = document.referrer;
+                        if (window.location.href === document.referrer) {
+                            window.location.href = "/index";
+                        } else {
+                            window.location.href = document.referrer;
+                        }
                     } else {
                         $notify.danger(result.message);
                         $form.bootstrapValidator('disableSubmitButtons', false);

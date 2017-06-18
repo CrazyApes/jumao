@@ -48,6 +48,7 @@ public class ViewMenuController extends ViewBaseController {
             }
         }
 
+        // 查询所有的父级菜单列表，并放置入响应域中
         {
             List<Menu> topMenuList = this.menuService.findByParentId(0L);
             map.addAttribute("topMenuList", topMenuList);

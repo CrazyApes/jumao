@@ -14,7 +14,7 @@ public class SystemContext {
         loginEmployee.setName("开发者");
         loginEmployee.setRoleTitle("高级开发工程师");
         loginEmployee.setSex("保密");
-        loginEmployee.setHeadImageUri("/images/header.jpg");
+        loginEmployee.setHeadImageUri("/images/header.png");
         loginEmployee.setBindingMobile(Boolean.TRUE);
         loginEmployee.setBindingEmail(Boolean.TRUE);
         return loginEmployee;

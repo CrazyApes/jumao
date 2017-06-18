@@ -39,8 +39,7 @@ public class RestMenuController extends RestBaseController {
 
         Integer page = this.getPage(offset, size);
 
-        Page<Menu> menuPage = this.menuService.findAll(
-                new MenuQuery(keywords, OrderType.ASC, "sortId"), page, size);
+        Page<Menu> menuPage = this.menuService.findAll(new MenuQuery(keywords), page, size);
 
         return GridData.build(menuPage);
     }

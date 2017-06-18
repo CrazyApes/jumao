@@ -7,7 +7,10 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.Specification;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Root;
 
 /**
  * @author CrazyApeDX
@@ -49,18 +52,23 @@ public abstract class AppQuery<Pojo extends AppPojo> {
                 Path<String> path = root.get("title");
                 query.where(builder.like(path, "%" + this.getKeywords() + "%"));
             }
-            if (null != this.getOrderType() && null != this.getOrderProperties()) {
-                Path<Object>  path = root.get(this.getOrderProperties());
-                switch (this.getOrderType()) {
-                    case ASC:
-                        query.orderBy(builder.asc(path));
-                        break;
-                    case DESC:
-                        query.orderBy(builder.desc(path));
-                        break;
-                }
-            }
+            query = this.getOrderQuery(root, query, builder);
             return query.getRestriction();
         };
+    }
+
+    protected CriteriaQuery getOrderQuery(Root root, CriteriaQuery query, CriteriaBuilder builder) {
+        if (null != this.getOrderType() && null != this.getOrderProperties() && this.getOrderProperties().length() > 0) {
+            Path path = root.get(this.getOrderProperties());
+            switch (this.getOrderType()) {
+                case ASC:
+                    query.orderBy(builder.asc(path));
+                    break;
+                case DESC:
+                    query.orderBy(builder.desc(path));
+                    break;
+            }
+        }
+        return query;
     }
 }

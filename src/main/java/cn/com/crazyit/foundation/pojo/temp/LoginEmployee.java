@@ -2,13 +2,11 @@ package cn.com.crazyit.foundation.pojo.temp;
 
 import cn.com.crazyit.core.constant.Sex;
 import cn.com.crazyit.foundation.pojo.Employee;
-import cn.com.crazyit.foundation.pojo.EmployeeAuth;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +27,7 @@ public class LoginEmployee implements Serializable {
     private Boolean bindingEmail;
     private Boolean bindingMobile;
 
-    public static LoginEmployee build(Employee employee, EmployeeAuth auth) {
+    public static LoginEmployee build(Employee employee) {
         LoginEmployee loginEmployee = new LoginEmployee();
         loginEmployee.setId(employee.getId());
         loginEmployee.setName(employee.getName());
@@ -42,8 +40,8 @@ public class LoginEmployee implements Serializable {
         } else {
             loginEmployee.setSex("保密");
         }
-        loginEmployee.setBindingEmail(null == auth.getEmail() ? Boolean.FALSE : Boolean.TRUE);
-        loginEmployee.setBindingMobile(null == auth.getMobile() ? Boolean.FALSE : Boolean.TRUE);
+        loginEmployee.setBindingEmail(null == employee.getEmail() ? Boolean.FALSE : Boolean.TRUE);
+        loginEmployee.setBindingMobile(null == employee.getMobile() ? Boolean.FALSE : Boolean.TRUE);
         return loginEmployee;
     }
 

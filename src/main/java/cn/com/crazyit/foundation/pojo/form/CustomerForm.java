@@ -37,7 +37,7 @@ public class CustomerForm implements Serializable {
     private String address;
 
     @Length(max = 20, message = "常用物流的长度不能超过20位")
-    @Pattern(regexp = "^[\\u4e00-\\u9fa5A-Za-z]+$", message = "常用物流只能输入中文和英文")
+    @Pattern(regexp = "^[\\u4e00-\\u9fa5A-Za-z]+$|^$", message = "常用物流只能输入中文和英文")
     private String deliveryType;
 
     @NotNull(message = "联系电话不能为空")

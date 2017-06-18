@@ -29,9 +29,6 @@
                     <button id="btn_edit" type="button" class="btn btn-default">
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;修改
                     </button>
-                    <button id="btn_delete" type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>&nbsp;失效
-                    </button>
                 </div>
                 <div class="box-body table-reponsive">
                     <table id="dataGrid" class="table table-bordered table-hover">
@@ -44,7 +41,7 @@
 </section>
 <script>
     $(function() {
-        $grid.init($('#dataGrid'), $('#toolbar'), '/api/customers', 'get', true, function(params) {
+        $grid.init($('#dataGrid'), $('#toolbar'), '/api/roles', 'get', true, function(params) {
             return {
                 offset: params.offset,
                 size: params.limit,
@@ -59,36 +56,15 @@
             align: 'center'
         }, {
             field: 'title',
-            title: '客户标识名'
+            title: '角色标题'
         }, {
-            field: 'region',
-            title: '所属地区',
-            width: '100px'
-        }, {
-            field: 'address',
-            title: '客户地址',
-            width: '350px'
-        }, {
-            field: 'phone',
-            title: '联系方式'
-        }, {
-            field: 'deliveryType',
-            title: '常用物流'
-        }, {
-            field: 'fax',
-            title: '传真号码'
-        }, {
-            field: 'remark',
-            title: '备注',
-            width: '400px'
-        }, {
-            field: 'enable',
-            title: '是否生效',
+            field: 'readOnly',
+            title: '是否只读',
             formatter: function(value) {
                 if (true === value) {
-                    return '<span class="label label-success">生效</span>';
+                    return '<span class="label label-danger">是</span>';
                 } else {
-                    return '<span class="label label-danger">失效</span>';
+                    return '<span class="label label-success">否</span>';
                 }
             },
             align: 'center'

@@ -32,13 +32,13 @@ $(function() {
                         message: '密码不能为空'
                     },
                     stringLength: {
-                        min: 10,
-                        max: 25,
-                        message: '密码的长度在10~25位之间'
+                        min: 6,
+                        max: 20,
+                        message: '密码的长度在6~20位之间'
                     },
                     regexp: {
-                        regexp: /^[A-Z][a-zA-Z0-9]{9,24}$/,
-                        message: '必须以大写字母开头，还可以包含小写字母和数字'
+                        regexp: /^[A-Za-z0-9]+$/,
+                        message: '密码只能输入英文和数字'
                     }
                 }
             }

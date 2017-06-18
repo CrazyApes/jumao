@@ -4,9 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 /**
  * @author CrazyApeDX
@@ -21,4 +21,20 @@ public class Role extends AppPojo {
 
     @Column(length = 10, nullable = false, unique = true)
     private String title;
+
+    @Column(nullable = false)
+    private Boolean readOnly = Boolean.FALSE;
+
+    @ManyToMany
+    @JoinTable(name = "role_menu",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "menu_id"))
+    private Set<Menu> menus;
+
+    @ManyToMany
+    @JoinTable(name = "role_button",
+            joinColumns = @JoinColumn(name = "role_id"),
+            inverseJoinColumns = @JoinColumn(name = "button_id"))
+    private Set<Button> buttons;
+
 }

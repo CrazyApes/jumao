@@ -14,3 +14,7 @@
     resize: none;
     height: 80px;
 }
+
+.header_info {
+    padding: 10px 5px 5px 15px; left: 90px;
+}

@@ -9,7 +9,7 @@ $(function() {
         $('[data-toggle="tooltip"]').popover();
     });
 
-    $('#customerForm').bootstrapValidator({
+    $('#employeeForm').bootstrapValidator({
         framework: 'bootstrap',
         feedbackIcons: {
             valid: 'glyphicon glyphicon-ok',
@@ -17,142 +17,144 @@ $(function() {
             validating: 'glyphicon glyphicon-refresh'
         },
         verbose: false,
+        excluded: null,
         fields: {
-            title: {
-                message: '客户标识名校验失败',
+            username: {
+                message: '员工账户名校验失败',
                 validators: {
                     notEmpty: {
-                        message: '客户标识名不能为空'
+                        message: '员工账户名不能为空'
+                    },
+                    stringLength: {
+                        min: 6,
+                        max: 20,
+                        message: '员工账户名的长度必须在6~20位之间'
+                    },
+                    regexp: {
+                        regexp: /^[A-Za-z0-9]+$/,
+                        message: '员工账户名只能输入英文和数字'
+                    },
+                    different: {
+                        field: 'password',
+                        message: '账户名不能与密码相同'
+                    },
+                    threshold: 6,
+                    remote: {
+                        type: 'POST',
+                        url: '/api/employees/validator/username',
+                        message: '该账户名已经存在',
+                        delay: 500,
+                        data: function() {
+                            return {
+                                username: $('#username').val(),
+                                id: $('#id').val()
+                            }
+                        }
+                    }
+                }
+            },
+            name: {
+                message: '员工姓名校验失败',
+                validators: {
+                    notEmpty: {
+                        message: '员工姓名不能为空'
                     },
                     stringLength: {
                         min: 2,
-                        max: 40,
-                        message: '客户标识名的长度必须在2~40位之间'
-                    },
-                    regexp: {
-                        regexp: /^[\u4e00-\u9fa5A-Za-z0-9]+$/,
-                        message: '客户标识名只能输入中文、英文和数字'
-                    },
-                    threshold: 2,
-                    remote: {
-                        type: 'POST',
-                        url: '/api/customers/validator/title',
-                        message: '该标识名已经存在',
-                        delay: 500,
-                        data: function() {
-                            return {
-                                title: $('#title').val(),
-                                id: $('#id').val()
-                            }
-                        }
-                    }
-                }
-            },
-            address: {
-                message: '客户地址校验失败',
-                validators: {
-                    notEmpty: {
-                        message: '客户地址不能为空'
-                    },
-                    regexp: {
-                        regexp: /^[\u4e00-\u9fa5A-Za-z0-9]+$/,
-                        message: '客户地址只能输入中文、英文和数字'
-                    },
-                    stringLength: {
-                        min: 4,
-                        max: 100,
-                        message: '客户地址的长度在4~100位之间'
-                    }
-                }
-            },
-            phone: {
-                message: '联系电话校验失败',
-                validators: {
-                    stringLength: {
-                        min: 8,
-                        max: 15,
-                        message: '联系电话的长度在8~15位之间'
-                    },
-                    notEmpty: {
-                        message: '联系电话不能为空'
-                    },
-                    regexp: {
-                        regexp: /^[0-9]+(-[0-9]+)?$/,
-                        message: '联系电话只能输入数字或横杠，且属于正确的电话号码格式'
-                    },
-                    threshold: 8,
-                    remote: {
-                        type: 'POST',
-                        url: '/api/customers/validator/phone',
-                        message: '该联系电话已经存在',
-                        delay: 500,
-                        data: function() {
-                            return {
-                                phone: $('#phone').val(),
-                                id: $('#id').val()
-                            }
-                        }
-                    }
-                }
-            },
-            fax: {
-                message: '客户传真校验失败',
-                validators: {
-                    stringLength: {
-                        max: 20,
-                        message: '客户传真最大不能超过20位'
-                    },
-                    threshold: 1,
-                    remote: {
-                        type: 'POST',
-                        url: '/api/customers/validator/fax',
-                        message: '该传真已经存在',
-                        delay: 500,
-                        data: function() {
-                            return {
-                                fax: $('#fax').val(),
-                                id: $('#id').val()
-                            }
-                        }
-                    }
-                }
-            },
-            region: {
-                message: '所属地区校验失败',
-                validators: {
-                    notEmpty: {
-                        message: '所属地区不能为空'
-                    },
-                    stringLength: {
-                        max: 20,
-                        min: 2,
-                        message: '所属地区的长度在2~20位之间'
+                        max: 5,
+                        message: '员工姓名的长度在2~5位之间'
                     },
                     regexp: {
                         regexp: /^[\u4e00-\u9fa5]+$/,
-                        message: '所属地区只能输入中文'
+                        message: '员工姓名只能输入中文'
                     }
                 }
             },
-            deliveryType: {
-                message: '常用物流校验失败',
+            mobile: {
+                message: '员工电话校验失败',
+                validators: {
+                    regexp: {
+                        regexp: /^(1[35784]\d{9})$/,
+                        message: '请输入正确的联系电话'
+                    },
+                    threshold: 11,
+                    remote: {
+                        type: 'POST',
+                        url: '/api/employees/validator/mobile',
+                        message: '该电话号码已经存在',
+                        delay: 500,
+                        data: function() {
+                            return {
+                                mobile: $('#mobile').val(),
+                                id: $('#id').val()
+                            }
+                        }
+                    }
+                }
+            },
+            email: {
+                message: '员工邮箱地址校验失败',
+                validators: {
+                    emailAddress: {
+                        message: '请输入正确的邮箱地址'
+                    },
+                    threshold: 6,
+                    remote: {
+                        type: 'POST',
+                        url: '/api/employees/validator/email',
+                        message: '该邮箱地址已经存在',
+                        delay: 500,
+                        data: function() {
+                            return {
+                                mobile: $('#mobile').val(),
+                                id: $('#id').val()
+                            }
+                        }
+                    }
+                }
+            },
+            activeTime: {
+                message: '入职时间校验失败',
+                validators: {
+                    notEmpty: {
+                        message: '入职时间不能为空'
+                    },
+                    date: {
+                        message: '请输入一个正确的日期'
+                    }
+                }
+            },
+            password: {
+                message: '账户密码校验失败',
                 validators: {
                     stringLength: {
+                        min: 6,
                         max: 20,
-                        message: '常用物流的长度不能超过20位'
+                        message: '密码的长度必须在6~20位之间'
                     },
                     regexp: {
-                        regexp: /^[\u4e00-\u9fa5A-Za-z]+$/,
-                        message: '常用物流只能输入中文和英文'
+                        regexp: /^[A-Za-z0-9]+$/,
+                        message: '密码只能输入英文和数字'
+                    },
+                    different: {
+                        field: 'username',
+                        message: '密码不能与账户名相同'
                     }
                 }
             },
-            remark: {
-                message: '备注信息校验失败',
+            rePassword: {
+                message: '重复密码校验失败',
                 validators: {
-                    stringLength: {
-                        max: 100,
-                        message: '备注信息的长度不能超过100位'
+                    callback: {
+                        message: '两次输入的密码不一致',
+                        callback: function (value, validators) {
+                            var password = $('#password').val();
+                            if ("" !== password && password.length > 0) {
+                                return value === password;
+                            } else {
+                                return true;
+                            }
+                        }
                     }
                 }
             }
@@ -171,7 +173,7 @@ $(function() {
         });
 
         if (null === $global.timer) {
-            var url = '/api/customers';
+            var url = '/api/employees';
 
             if (null !== data.id && 0 !== Number(data.id)) {
                 data._method = 'PUT';
@@ -208,7 +210,6 @@ $(function() {
                     }
                 }
             })
-
         }
     });
 

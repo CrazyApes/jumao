@@ -127,15 +127,15 @@
                                     <i class="fa fa-question-circle i-tooltip hidden-xs" data-toggle="tooltip"
                                        data-content="可以输入任意信息，长度在0~150之间"></i>
                                 </label>
-                                <div class="input-group col-xs-12 col-md-6">
-                                    <textarea name="remark" id="remark" class="form-control no-resize"
+                                <div class="input-group col-xs-12 col-md-12">
+                                    <textarea name="remark" id="remark" class="form-control no-resize" rows="3"
                                             placeholder="请在此输入备注信息"><#if customer??>${customer.remark!''}</#if></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-6 col-xs-12">
+                        <div class="col-md-12 col-xs-12">
                             <div class="form-group">
                                 <label for="enable">
                                     是否生效

@@ -30,7 +30,7 @@
                         <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>&nbsp;修改
                     </button>
                     <button id="btn_delete" type="button" class="btn btn-default">
-                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>&nbsp;失效
+                        <span class="glyphicon glyphicon-minus" aria-hidden="true"></span>&nbsp;离职
                     </button>
                 </div>
                 <div class="box-body table-reponsive">
@@ -44,7 +44,7 @@
 </section>
 <script>
     $(function() {
-        $grid.init($('#dataGrid'), $('#toolbar'), '/api/customers', 'get', true, function(params) {
+        $grid.init($('#dataGrid'), $('#toolbar'), '/api/employees', 'get', true, function(params) {
             return {
                 offset: params.offset,
                 size: params.limit,
@@ -58,44 +58,75 @@
             title: 'ID',
             align: 'center'
         }, {
-            field: 'title',
-            title: '客户标识名'
+            field: 'name',
+            title: '员工姓名'
         }, {
-            field: 'region',
-            title: '所属地区',
-            width: '100px'
+            field: 'username',
+            title: '员工账户名',
+            width: '150px'
         }, {
-            field: 'address',
-            title: '客户地址',
-            width: '350px'
+            field: 'mobile',
+            title: '员工手机',
+            width: '120px'
         }, {
-            field: 'phone',
-            title: '联系方式'
+            field: 'email',
+            title: '员工邮箱',
+            width: '120px'
         }, {
-            field: 'deliveryType',
-            title: '常用物流'
+            field: 'sex',
+            title: '性别',
+            formatter: function(value) {
+                if ('MALE' === value) {
+                    return '男';
+                } else if ('FEMALE' === value) {
+                    return '女';
+                } else {
+                    return '保密';
+                }
+            },
+            align: 'center'
         }, {
-            field: 'fax',
-            title: '传真号码'
+            field: 'status',
+            title: '状态',
+            formatter: function(value) {
+                if ('ACTIVE' === value) {
+                    return '<span class="label label-success">在职</span>';
+                } else {
+                    return '<span class="label label-danger">离职</span>';
+                }
+            },
+            align: 'center'
         }, {
-            field: 'remark',
-            title: '备注',
-            width: '400px'
+            field: 'activeTime',
+            title: '员工入职时间',
+            formatter: function(value) {
+                if (null !== value) {
+                    return new Date(value).Format('yyyy-MM-dd HH:mm:ss');
+                }
+            }
         }, {
-            field: 'enable',
-            title: '是否生效',
+            field: 'inactiveTime',
+            title: '员工离职时间',
+            formatter: function(value) {
+                if (null !== value) {
+                    return new Date(value).Format('yyyy-MM-dd HH:mm:ss');
+                }
+            }
+        }, {
+            field: 'readOnly',
+            title: '是否只读',
             formatter: function(value) {
                 if (true === value) {
-                    return '<span class="label label-success">生效</span>';
+                    return '<span class="label label-danger">是</span>';
                 } else {
-                    return '<span class="label label-danger">失效</span>';
+                    return '<span class="label label-success">否</span>';
                 }
             },
             align: 'center'
         }]);
 
         $('#btn_add').on('click', function () {
-            $grid.add('/customers/edit/0?parentMenuId=${parentMenuId!'0'}');
+            $grid.add('/employees/edit/0?parentMenuId=${parentMenuId!'0'}');
         });
 
         $('#btn_edit').on('click', function() {
@@ -112,7 +143,7 @@
                 if (true === row.readOnly) {
                     $notify.warning('只读数据不允许修改');
                 } else {
-                    window.location.href = '/customers/edit/' + id + '?parentMenuId=${parentMenuId!'0'}';
+                    window.location.href = '/employees/edit/' + id + '?parentMenuId=${parentMenuId!'0'}';
                 }
             }
         });
@@ -127,7 +158,7 @@
                 } else {
                     $global.timer = $loading.show(1500);
                     $.ajax({
-                        url: '/api/customers/enable/false',
+                        url: '/api/employees/status/inactive',
                         method: 'POST',
                         traditional: true,
                         data: {
@@ -145,7 +176,7 @@
                             $global.timer = null;
                             if (0 === result.code) {
                                 $grid.refresh($('#dataGrid'));
-                                $notify.info("共计" + result.content + "条数据被失效");
+                                $notify.info("共计" + result.content + "条数据被设置为离职状态");
                             } else {
                                 $notify.danger(result.message);
                             }
