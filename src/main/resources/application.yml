@@ -54,6 +54,9 @@ spring:
 application:
   jwt:
     key: test
+  images:
+    bucket: jumao-dev
+    cdn-hosts: jumao-dev.oss-cn-shenzhen.aliyuncs.com
 
 ---
 # 生产环境私有属性配置

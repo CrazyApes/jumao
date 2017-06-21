@@ -16,11 +16,12 @@ public class ImageLocationConfiguration {
 
     protected final static String PREFIX = "application.images";
 
-    @Setter private String path;
+    @Setter private String bucket;
+    @Setter private String[] cdnHosts;
 
     @Bean
     public ImageLocationEnvironment applicationEnvironment() {
-        return new ImageLocationEnvironment(path);
+        return new ImageLocationEnvironment(bucket, cdnHosts);
     }
 
 }
