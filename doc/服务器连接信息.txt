@@ -1,3 +1,6 @@
 ip:120.77.41.227
 user:root
 pwd:Root123456
+
+
+阿里云账号：qiding168 密码：dabao2xiaobao

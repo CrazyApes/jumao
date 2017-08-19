@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - changeSet:
+      id: 201706091123
+      author: Zack
+      changes:
+        - createTable:
+            tableName: menu
+            columns:
+              - column:
+                  name: id
+                  type: bigint(20)
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: icon_style
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+                    default: null
+              - column:
+                  name: link_uri
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+                    default: null
+              - column:
+                  name: parent_id
+                  type: bigint(20)
+                  constraints:
+                    nullable: true
+                    default: null
+              - column:
+                  name: sort_id
+                  type: int(11)
+                  constraints:
+                    nullable: true
+                    default: null
+              - column:
+                  name: title
+                  type: varchar(255)
+                  constraints:
+                    nullable: true
+                    default: null
+              - column:
+                  name: read_only
+                  type: bit(1)
+                  constraints:
+                    nullable: false
