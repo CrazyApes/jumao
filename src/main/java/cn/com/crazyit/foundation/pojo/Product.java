@@ -15,17 +15,10 @@ import javax.persistence.*;
 @Setter
 @ToString(callSuper = true)
 @Entity
-@Table(name = "PRICE_CONF")
-public class PriceConf extends AppPojo {
-    //父配制id
-    @Column(updatable = false)
-    private Long parentConfId;
-
-    // 所属客户
-    @ManyToOne(targetEntity = Customer.class)
-    @JoinColumn(name = "CUSTOMER_ID", nullable = false)
-    private Customer customer;
-
+@Table(name = "PRODUCT")
+public class Product extends AppPojo {
+    @Column(length = 20, nullable = false, unique = true)
+    private String name;
     //高度超出加的价格
     @Column(nullable = false)
     private Long incrementPriceForH;
