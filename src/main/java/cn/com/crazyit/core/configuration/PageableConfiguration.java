@@ -16,10 +16,14 @@ public class PageableConfiguration {
 
     protected final static String PREFIX = "application.pageable";
 
-    @Setter private Integer defaultPage;
-    @Setter private Integer defaultSize;
-    @Setter private Integer minSize;
-    @Setter private Integer maxSize;
+    @Setter
+    private Integer defaultPage;
+    @Setter
+    private Integer defaultSize;
+    @Setter
+    private Integer minSize;
+    @Setter
+    private Integer maxSize;
 
     @Bean
     public PageableEnvironment pageableEnvironment() {
