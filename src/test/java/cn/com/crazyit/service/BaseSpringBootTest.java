@@ -1,7 +1,7 @@
+package cn.com.crazyit.service;
+
 import cn.com.crazyit.ApplicationStarter;
-import cn.com.crazyit.foundation.pojo.Customer;
 import cn.com.crazyit.foundation.pojo.temp.MenuBar;
-import cn.com.crazyit.foundation.service.CustomerService;
 import cn.com.crazyit.foundation.service.MenuService;
 import org.junit.Test;
 import org.junit.runner.RunWith;

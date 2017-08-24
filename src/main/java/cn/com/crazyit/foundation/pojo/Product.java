@@ -44,8 +44,8 @@ public class Product extends AppPojo {
     private Long basePriceB;
 
     @Enumerated
-    @Column(length = 20, nullable = false)
-    private PriceConfType priceConfType;
+    @Column(length = 2, nullable = false)
+    private Integer priceConfType;
 
     //基础宽度
     @Column(nullable = false)
